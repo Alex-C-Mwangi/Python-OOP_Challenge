@@ -11,6 +11,7 @@ class Pet:
     def eat(self):
         self.hunger = self._clamp(self.hunger -3)
         self.happiness = self._clamp(self.happiness +1)
+        print(f"{self.name} has been fed")
     def sleep(self):
         self.energy = self._clamp(self.energy +5)
         print(f"{self.name} is sleeping and feels energized")
