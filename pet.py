@@ -4,6 +4,8 @@ class Pet:
         self.hunger = 5
         self.energy = 5
         self.happiness = 5
+        self.tricks = []
+        self.available_tricks = ['Sit', 'Roll over', 'Shake', 'Jump']
     def _clamp(self, value):
         return max(0, min(10, value))
     def eat(self):
@@ -22,3 +24,21 @@ class Pet:
         print(f"Hunger: {self.hunger}/10")
         print(f"Energy: {self.energy}/10")
         print(f"Happiness: {self.happiness}/10")
+    def train(self, trick):
+        if trick not in self.tricks:
+            self.tricks.append(trick)
+            print(f"{self.name} has learned how to {trick}")
+        else:
+            print(f"{self.name}already knows how to{trick}")
+            return
+        if self.energy < 1:
+            print(f"{self.name} is too tired to learn new tricks!")
+            return
+        self.energy = self._clamp(self.energy -1)
+        self.happiness = self._clamp(self.happiness + 1)
+        print(f"{self.name} learned how to {trick}!")
+    def show_tricks(self):
+        if self.tricks:
+            print(f"{self.name} knows these tricks: {', '.join(self.tricks)}")
+        else:
+            print(f"{self.name} hasn't learned any tricks")
